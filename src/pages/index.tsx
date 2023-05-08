@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { Poppins } from "next/font/google";
+import { Kings, Poppins } from "next/font/google";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -18,7 +18,7 @@ const steps = [
 ];
 
 interface Colaborador {
-  edv: string;
+  EDV: string;
   nome: string;
   origemAfastamento: number;
 }
@@ -29,7 +29,7 @@ export const PoppyTitulo = Poppins({
 });
 
 export default function Home() {
-  const [colaborador, setColaborador] = useState<Colaborador>({edv: '', nome: '', origemAfastamento: 0});
+  const [colaborador, setColaborador] = useState<Colaborador>({EDV: "", nome: "", origemAfastamento: 0});
   const [numPasso, setNumPasso] = useState(0);
 
   const goToNext = () => {
@@ -38,7 +38,11 @@ export default function Home() {
   };
 
   const handleChangeColaborador = (event: ChangeEvent<HTMLInputElement>) =>{
-    setColaborador({...colaborador, event} as Colaborador)
+    const {name, value} = (event.target);
+    setColaborador((prevState: Colaborador) => ({
+      ...prevState,
+      [name]: value
+    }))
   }
 
   //https://lightrun.com/answers/preactjs-preact-typescript-why-cant-i-setstate-with-an-object-containing-the-keys-of-my-state-type

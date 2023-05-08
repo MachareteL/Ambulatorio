@@ -16,7 +16,7 @@ export default function Funcionario({goToNext, handleChange}: FuncionarioType) {
         <h1 className={`${PoppyTitulo.className} text-3xl place-self-center [word-spacing: 2rem]`}>
           Dados do Colaborador
         </h1>
-        <TextField label="EDV" placeholder="00000000" type={'number'} onChange={(event : ChangeEvent<HTMLInputElement>)=>handleChange(event)}/>
+        <TextField label="EDV" placeholder="00000000" name="EDV" type={'number'} onChange={(event : ChangeEvent<HTMLInputElement>)=>handleChange(event)}/>
         <TextField label="Nome" placeholder="Digite seu nome completo" />
       </div>
       <BtnNext onClick={goToNext} valid={valido}/>
