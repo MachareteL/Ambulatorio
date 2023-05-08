@@ -23,6 +23,16 @@ export interface Colaborador {
   nome: string;
   origemAfastamento: String;
   origemAfastamentoMotivo?: String;
+  supervisor: String;
+  MEDCA: String;
+  CAPTEF6: String;
+  outrosParticipantes?: String;
+  AreaOutroParticipante?: String;
+  parteCorpo: String;
+  fisioterapia: String;
+  bemComVida: String;
+  postosValidados: String;
+  
 }
 
 export const PoppyTitulo = Poppins({
@@ -35,6 +45,16 @@ export default function Home() {
     EDV: "",
     nome: "",
     origemAfastamento: "",
+    supervisor: "",
+    MEDCA: "",
+    CAPTEF6: "",
+    AreaOutroParticipante: "",
+    origemAfastamentoMotivo: "",
+    outrosParticipantes: "",
+    parteCorpo: "",
+    fisioterapia: "",
+    bemComVida: "",
+    postosValidados: ""
   });
   const [numPasso, setNumPasso] = useState(0);
 
@@ -84,7 +104,11 @@ export default function Home() {
               values={colaborador}
             />
           ) : numPasso == 3 ? (
-            <Restricao goToNext={goToNext} />
+            <Restricao
+              goToNext={goToNext}
+              handleChange={handleChangeColaborador}
+              values={colaborador}
+            />
           ) : (
             <>FIM</>
           )}

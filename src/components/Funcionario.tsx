@@ -43,7 +43,7 @@ export default function Funcionario({
           }
         />
       </div>
-      <BtnNext onClick={goToNext} valid={valido} />
+      <BtnNext onClick={goToNext} valid={valido} btnText={"Continuar"}/>
     </div>
   );
 }

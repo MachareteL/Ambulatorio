@@ -6,18 +6,20 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
+import { TextField } from "@mui/material";
 
 type origemType = {
   goToNext: () => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  values: Colaborador
+  values: Colaborador;
 };
 
 export default function OrigemAfastamento({
   goToNext,
   handleChange,
-  values
+  values,
 }: origemType) {
+  const [showOutros, setShowOutros] = useState(false);
   return (
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
       <div className="flex flex-col gap-12">
@@ -25,7 +27,11 @@ export default function OrigemAfastamento({
           Origem do Afastamento
         </h1>
         <FormControl>
-          <RadioGroup name="origemAfastamento" onChange={handleChange}>
+          <RadioGroup
+            name="origemAfastamento"
+            onChange={handleChange}
+            value={values.origemAfastamento}
+          >
             <FormControlLabel
               value="reintegracao"
               control={<Radio />}
@@ -36,11 +42,24 @@ export default function OrigemAfastamento({
               control={<Radio />}
               label="Retorno de afastamento INSS"
             />
-            <FormControlLabel value="outro" control={<Radio />} label="Other" />
+            <FormControlLabel
+              value="outro"
+              control={<Radio />}
+              label="Outro"
+              onClick={() => setShowOutros(true)}
+            />
           </RadioGroup>
         </FormControl>
+        <TextField
+          label="Outro Motivo"
+          placeholder="Digite aqui o outro motivo"
+          name="origemAfastamentoMotivo"
+          hidden={!showOutros}
+          value={values.origemAfastamentoMotivo}
+          onChange={handleChange}
+        />
       </div>
-      <BtnNext onClick={goToNext} valid={true} />
+      <BtnNext onClick={goToNext} valid={true} btnText={"Continuar"}/>
     </div>
   );
 }
