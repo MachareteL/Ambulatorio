@@ -1,6 +1,6 @@
-import React, { SyntheticEvent } from "react";
+import React, { ChangeEvent, SyntheticEvent } from "react";
 import BtnNext from "./BtnNext";
-import { PoppyTitulo } from "@/pages";
+import { Colaborador, PoppyTitulo } from "@/pages";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,18 +9,15 @@ import { useState } from "react";
 
 type origemType = {
   goToNext: () => void;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  values: Colaborador
 };
 
-export default function OrigemAfastamento({ goToNext }: origemType) {
-  const [value, setValue] = useState("");
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | EventTarget>
-  ) => {
-    setValue((event.target as HTMLInputElement).value);
-    console.log(value);
-  };
-
+export default function OrigemAfastamento({
+  goToNext,
+  handleChange,
+  values
+}: origemType) {
   return (
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
       <div className="flex flex-col gap-12">
@@ -28,11 +25,7 @@ export default function OrigemAfastamento({ goToNext }: origemType) {
           Origem do Afastamento
         </h1>
         <FormControl>
-          <RadioGroup
-            name="radio_buttons_group"
-            value={value}
-            onChange={handleChange}
-          >
+          <RadioGroup name="origemAfastamento" onChange={handleChange}>
             <FormControlLabel
               value="reintegracao"
               control={<Radio />}
@@ -47,7 +40,7 @@ export default function OrigemAfastamento({ goToNext }: origemType) {
           </RadioGroup>
         </FormControl>
       </div>
-      <BtnNext onClick={goToNext} />
+      <BtnNext onClick={goToNext} valid={true} />
     </div>
   );
 }
