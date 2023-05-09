@@ -9,6 +9,7 @@ import OrigemAfastamento from "@/components/OrigemAfastamento";
 import Participantes from "@/components/Participantes";
 import Restricao from "@/components/Restricao";
 import { StepButton } from "@mui/material";
+import Fim from "@/components/Fim";
 
 const steps = [
   "Dados do Funcionário",
@@ -32,11 +33,11 @@ export interface Colaborador {
   fisioterapia: String;
   bemComVida: String;
   postosValidados: String;
-  
+  recomendacoes: String;
 }
 
 export const PoppyTitulo = Poppins({
-  weight: "400",
+  weight: ["400", "600"],
   subsets: ["latin"],
 });
 
@@ -54,7 +55,8 @@ export default function Home() {
     parteCorpo: "",
     fisioterapia: "",
     bemComVida: "",
-    postosValidados: ""
+    postosValidados: "",
+    recomendacoes: "",
   });
   const [numPasso, setNumPasso] = useState(0);
 
@@ -76,7 +78,11 @@ export default function Home() {
     <main className="bg-[url('../../public/BOSCH.svg')] h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center w-screen">
       <div className="container bg-white h-4/6 sm:h-5/6 rounded-xl w-5/6 flex">
         <Box sx={{ width: "100%", marginTop: "36px" }}>
-          <Stepper activeStep={numPasso} alternativeLabel>
+          <Stepper
+            activeStep={numPasso}
+            alternativeLabel
+            className={numPasso == 4 ? `hidden` : ``}
+          >
             {steps.map((label, index) => (
               <Step key={label}>
                 <StepButton onClick={() => setNumPasso(index)}>
@@ -110,7 +116,11 @@ export default function Home() {
               values={colaborador}
             />
           ) : (
-            <>FIM</>
+            <Fim
+              goToNext={goToNext}
+              handleChange={handleChangeColaborador}
+              values={colaborador}
+            />
           )}
         </Box>
       </div>

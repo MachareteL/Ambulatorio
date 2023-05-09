@@ -68,8 +68,12 @@ export default function Restricao({
           </RadioGroup>
         </FormControl>
         <div className="grid grid-rows-2 gap-4">
-          <TextField label="Postos validados com o funcinário para retorno ao trabalho" />
-          <TextField label="Recomendações ao funcionário" />
+          <TextField label="Postos validados com o funcinário para retorno ao trabalho" name="postosValidados" onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            handleChange(event)
+          }/>
+          <TextField label="Recomendações ao funcionário" name="recomendacoes" onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            handleChange(event)
+          }/>
         </div>
       </div>
       <BtnNext

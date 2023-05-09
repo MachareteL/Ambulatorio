@@ -33,12 +33,12 @@ export default function OrigemAfastamento({
             value={values.origemAfastamento}
           >
             <FormControlLabel
-              value="reintegracao"
+              value="Reintegração"
               control={<Radio />}
               label="Reintegração"
             />
             <FormControlLabel
-              value="retornoinss"
+              value="Retorno INSS"
               control={<Radio />}
               label="Retorno de afastamento INSS"
             />

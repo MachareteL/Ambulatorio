@@ -24,6 +24,15 @@ export default function Funcionario({
           Dados do Colaborador
         </h1>
         <TextField
+          label="Nome"
+          value={values.nome}
+          placeholder="Digite seu nome completo"
+          name="nome"
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            handleChange(event)
+          }
+        />
+        <TextField
           label="EDV"
           value={values.EDV}
           placeholder="00000000"
@@ -33,17 +42,8 @@ export default function Funcionario({
             handleChange(event)
           }
         />
-        <TextField
-          label="Nome"
-          value={values.nome}
-          placeholder="Digite seu nome completo"
-          name="nome"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            handleChange(event)
-          }
-        />
       </div>
-      <BtnNext onClick={goToNext} valid={valido} btnText={"Continuar"}/>
+      <BtnNext onClick={goToNext} valid={valido} btnText={"Continuar"} />
     </div>
   );
 }
