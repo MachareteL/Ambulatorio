@@ -9,7 +9,8 @@ import OrigemAfastamento from "@/components/OrigemAfastamento";
 import Participantes from "@/components/Participantes";
 import Restricao from "@/components/Restricao";
 import { StepButton } from "@mui/material";
-import Fim from "@/components/Fim";
+import Resumo from "@/components/Resumo";
+import Final from "@/components/Final";
 
 const steps = [
   "Dados do Funcionário",
@@ -64,6 +65,10 @@ export default function Home() {
     console.log(colaborador);
     setNumPasso((p) => p + 1);
   };
+  const goBack = () => {
+    console.log(colaborador);
+    setNumPasso((p) => p - 1);
+  };
 
   const handleChangeColaborador = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -73,6 +78,25 @@ export default function Home() {
     }));
   };
 
+  const newForm = () => {
+    setColaborador({
+      EDV: "",
+      nome: "",
+      origemAfastamento: "",
+      supervisor: "",
+      MEDCA: "",
+      CAPTEF6: "",
+      AreaOutroParticipante: "",
+      origemAfastamentoMotivo: "",
+      outrosParticipantes: "",
+      parteCorpo: "",
+      fisioterapia: "",
+      bemComVida: "",
+      postosValidados: "",
+      recomendacoes: "",
+    });
+    setNumPasso(0)
+  };
   //https://lightrun.com/answers/preactjs-preact-typescript-why-cant-i-setstate-with-an-object-containing-the-keys-of-my-state-type
   return (
     <main className="bg-[url('../../public/BOSCH.svg')] h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center w-screen">
@@ -81,7 +105,7 @@ export default function Home() {
           <Stepper
             activeStep={numPasso}
             alternativeLabel
-            className={numPasso == 4 ? `hidden` : ``}
+            className={numPasso >= 4 ? `hidden` : ``}
           >
             {steps.map((label, index) => (
               <Step key={label}>
@@ -115,12 +139,12 @@ export default function Home() {
               handleChange={handleChangeColaborador}
               values={colaborador}
             />
+          ) : numPasso == 4 ? (
+            <Final goToNext={goToNext} restart={newForm}/>
+          ) : numPasso == 5 ? (
+            <Resumo goBack={goBack} values={colaborador} />
           ) : (
-            <Fim
-              goToNext={goToNext}
-              handleChange={handleChangeColaborador}
-              values={colaborador}
-            />
+            <></>
           )}
         </Box>
       </div>
