@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Funcionario from "@/components/Funcionario";
+import Employee from "@/components/Funcionario";
 import OrigemAfastamento from "@/components/OrigemAfastamento";
 import Participantes from "@/components/Participantes";
 import Restricao from "@/components/Restricao";
@@ -20,7 +20,7 @@ const steps = [
   "Fim",
 ];
 
-export interface Colaborador {
+export interface Employee {
   EDV: string;
   nome: string;
   origemAfastamento: String;
@@ -43,7 +43,7 @@ export const PoppyTitulo = Poppins({
 });
 
 export default function Home() {
-  const [colaborador, setColaborador] = useState<Colaborador>({
+  const [employee, setEmployee] = useState<Employee>({
     EDV: "",
     nome: "",
     origemAfastamento: "",
@@ -59,27 +59,27 @@ export default function Home() {
     postosValidados: "",
     recomendacoes: "",
   });
-  const [numPasso, setNumPasso] = useState(0);
+  const [numPass, setNumPass] = useState(0);
 
   const goToNext = () => {
-    console.log(colaborador);
-    setNumPasso((p) => p + 1);
+    console.log(employee);
+    setNumPass((p) => p + 1);
   };
   const goBack = () => {
-    console.log(colaborador);
-    setNumPasso((p) => p - 1);
+    console.log(employee);
+    setNumPass((p) => p - 1);
   };
 
-  const handleChangeColaborador = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeEmployee = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setColaborador((prevState: Colaborador) => ({
+    setEmployee((prevState: Employee) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
   const newForm = () => {
-    setColaborador({
+    setEmployee({
       EDV: "",
       nome: "",
       origemAfastamento: "",
@@ -95,54 +95,54 @@ export default function Home() {
       postosValidados: "",
       recomendacoes: "",
     });
-    setNumPasso(0)
+    setNumPass(0)
   };
   //https://lightrun.com/answers/preactjs-preact-typescript-why-cant-i-setstate-with-an-object-containing-the-keys-of-my-state-type
   return (
     <main className="bg-[url('../../public/BOSCH.svg')] h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center w-screen">
-      <div className="container bg-white h-4/6 sm:h-5/6 rounded-xl w-5/6 flex">
+      <div className={numPass == 5? `bg-white rounded-md`: `container bg-white h-4/6 sm:h-5/6 rounded-xl w-5/6 flex`}>
         <Box sx={{ width: "100%", marginTop: "36px" }}>
           <Stepper
-            activeStep={numPasso}
+            activeStep={numPass}
             alternativeLabel
-            className={numPasso >= 4 ? `hidden` : ``}
+            className={numPass >= 4 ? `hidden` : ``}
           >
             {steps.map((label, index) => (
               <Step key={label}>
-                <StepButton onClick={() => setNumPasso(index)}>
+                <StepButton onClick={() => setNumPass(index)}>
                   {label}
                 </StepButton>
               </Step>
             ))}
           </Stepper>
-          {numPasso == 0 ? (
-            <Funcionario
+          {numPass == 0 ? (
+            <Employee
               goToNext={goToNext}
-              handleChange={handleChangeColaborador}
-              values={colaborador}
+              handleChange={handleChangeEmployee}
+              values={employee}
             />
-          ) : numPasso == 1 ? (
+          ) : numPass == 1 ? (
             <OrigemAfastamento
               goToNext={goToNext}
-              handleChange={handleChangeColaborador}
-              values={colaborador}
+              handleChange={handleChangeEmployee}
+              values={employee}
             />
-          ) : numPasso == 2 ? (
+          ) : numPass == 2 ? (
             <Participantes
               goToNext={goToNext}
-              handleChange={handleChangeColaborador}
-              values={colaborador}
+              handleChange={handleChangeEmployee}
+              values={employee}
             />
-          ) : numPasso == 3 ? (
+          ) : numPass == 3 ? (
             <Restricao
               goToNext={goToNext}
-              handleChange={handleChangeColaborador}
-              values={colaborador}
+              handleChange={handleChangeEmployee}
+              values={employee}
             />
-          ) : numPasso == 4 ? (
-            <Final goToNext={goToNext} restart={newForm}/>
-          ) : numPasso == 5 ? (
-            <Resumo goBack={goBack} values={colaborador} />
+          ) : numPass == 4 ? (
+            <Final goToNext={goToNext} restart={newForm} values={employee}/>
+          ) : numPass == 5 ? (
+            <Resumo goBack={goBack} values={employee} />
           ) : (
             <></>
           )}

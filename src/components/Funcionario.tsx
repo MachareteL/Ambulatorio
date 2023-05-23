@@ -1,20 +1,20 @@
 import React, { ChangeEvent, useState } from "react";
-import { Colaborador, PoppyTitulo } from "@/pages";
+import { Employee, PoppyTitulo } from "@/pages";
 import BtnNext from "./BtnNext";
 import { TextField } from "@mui/material";
 
-type FuncionarioType = {
+type EmployeeType = {
   goToNext: () => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  values: Colaborador;
+  values: Employee;
 };
 
 export default function Funcionario({
   goToNext,
   handleChange,
   values,
-}: FuncionarioType) {
-  const [valido, setValido] = useState(true);
+}: EmployeeType) {
+  const [valid, setValid] = useState(true);
   return (
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
       <div className="flex flex-col gap-12">
@@ -43,7 +43,7 @@ export default function Funcionario({
           }
         />
       </div>
-      <BtnNext onClick={goToNext} valid={valido} btnText={"Continuar"} />
+      <BtnNext onClick={goToNext} valid={valid} btnText={"Continuar"} />
     </div>
   );
 }

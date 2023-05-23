@@ -1,4 +1,4 @@
-import { Colaborador, PoppyTitulo } from "@/pages";
+import { Employee, PoppyTitulo } from "@/pages";
 import { TextField } from "@mui/material";
 import React, { ChangeEvent } from "react";
 import BtnNext from "./BtnNext";
@@ -6,7 +6,7 @@ import BtnNext from "./BtnNext";
 type participantesType = {
   goToNext: () => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  values: Colaborador;
+  values: Employee;
 };
 
 export default function Participantes({

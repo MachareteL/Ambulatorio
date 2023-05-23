@@ -1,6 +1,6 @@
 import React, { ChangeEvent, SyntheticEvent } from "react";
 import BtnNext from "./BtnNext";
-import { Colaborador, PoppyTitulo } from "@/pages";
+import { Employee, PoppyTitulo } from "@/pages";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -11,7 +11,7 @@ import { TextField } from "@mui/material";
 type origemType = {
   goToNext: () => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  values: Colaborador;
+  values: Employee;
 };
 
 export default function OrigemAfastamento({

@@ -1,4 +1,4 @@
-import { Colaborador, PoppyTitulo } from "@/pages";
+import { Employee, PoppyTitulo } from "@/pages";
 import {
   FormControl,
   FormControlLabel,
@@ -13,7 +13,7 @@ import BtnNext from "./BtnNext";
 type restricaoType = {
   goToNext: () => void;
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  values: Colaborador;
+  values: Employee;
 };
 
 export default function Restricao({

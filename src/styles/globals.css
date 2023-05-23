@@ -13,3 +13,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+p{
+  word-wrap: break-word;
+  max-width: 100%;
+  text-transform: uppercase;
+}
