@@ -42,6 +42,7 @@ export default function OrigemAfastamento({
               control={<Radio />}
               label="Retorno de afastamento INSS"
             />
+            {/* QUANDO CLICAR EM OUTRA OPÇÃO QUE NÃO SEJA "OUTRO", TIRAR O INPUT DO MOTIVO */}
             <FormControlLabel
               value="outro"
               control={<Radio />}

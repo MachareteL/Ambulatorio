@@ -61,7 +61,7 @@ export default function Participantes({
             value={values.outrosParticipantes}
           />
           <TextField
-            label="Area"
+            label="Área"
             placeholder="Area do Participante"
             name="AreaOutroParticipante"
             value={values.AreaOutroParticipante}

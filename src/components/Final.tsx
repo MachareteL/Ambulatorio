@@ -4,50 +4,68 @@ import React from "react";
 import BtnNext from "./BtnNext";
 import { jsPDF } from "jspdf";
 import logo from "../../public/BOSCH.svg";
+
 type Final = {
   goToNext: () => void;
   restart: () => void;
   values: Employee;
 };
 
+
+
 export default function Final({ goToNext, restart, values }: Final) {
   const pdf = () => {
     const doc = new jsPDF({unit: "px", });
-    doc.text(values.EDV, 20, 20)
-    doc.save()
-    // doc.html(
-    //   `
-    //   <html lang="en">
-        
-    //     <body background="red">
-    //       <div
-    //         style="
-    //           display: flex;
-    //           justify-content: center;
-    //         "
-    //       >
-    //         <div style=" background: red">
-    //           <div>
-    //             <h1>Dados do funcionário</h1>
-    //             <div style="display: flex">
-    //               <h1>Nome:</h1>
-    //               <p>${values.nome}</p>
-    //             </div>
-    //             <div style="display: flex">
-    //               <h1>EDV:</h1>
-    //               <p>${values.EDV}</p>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </body>
-    //   </html>
-    //   `,
-    //   {
-    //     callback: function (doc) {
-    //       doc.save('teste');
-    //     }}
-    // );
+    
+    doc.setFontSize(16)
+    doc.setFont("Poppins", "bold")
+    doc.text("Dados do colaborador", 20, 20)
+
+    doc.setFontSize(14)
+    doc.setFont("Poppins", "regular")
+    doc.text(`Nome: ${values.nome.toUpperCase()}` , 20, 40)
+    doc.text(`EDV: ${values.EDV}`, 20, 60)
+
+    doc.setFontSize(16)
+    doc.setFont("Poppins", "bold")
+    if (values.origemAfastamento != "outro"){
+      doc.text(`Origem do afastamento: ${values.origemAfastamento.toUpperCase()}`, 20, 100)
+    }else{
+      doc.text(`Origem do afastamento: ${values.origemAfastamento.toUpperCase()}`, 20, 100)
+      doc.setFontSize(14)
+      doc.setFont("Poppins", "regular")
+      doc.text(`Motivo: ${values.origemAfastamentoMotivo}`, 20 ,115)
+      
+    }
+      
+
+    doc.setFontSize(16)
+    doc.setFont("Poppins", "bold")
+    doc.text("Participantes do afastamento", 20, 150)
+
+    doc.setFontSize(14)
+    doc.setFont("Poppins", "regular")
+    doc.text(`Supervisor: ${values.supervisor.toUpperCase()}`, 20, 170)
+    doc.text(`MED-Ca: ${values.MEDCA.toUpperCase()}`, 20, 190)
+    doc.text(`CAP/TEF6: ${values.CAPTEF6.toUpperCase()}`, 20, 210)
+    if(values.AreaOutroParticipante != undefined && values.outrosParticipantes != undefined){
+      doc.text(`Outros: ${values.outrosParticipantes}`.toUpperCase(), 20, 235)
+      doc.text(`Área: ${values.AreaOutroParticipante}`.toUpperCase(), 20, 250)
+    }
+
+    doc.setFontSize(16)
+    doc.setFont("Poppins", "bold")
+    doc.text("Restrição/Limitação", 20, 290)
+
+    doc.setFontSize(14)
+    doc.setFont("Poppins", "regular")
+    doc.text(`Parte do corpo afetada: ${values.parteCorpo.toUpperCase()}`, 20, 310)
+    doc.text(`Fisioterapia? ${values.fisioterapia.toUpperCase()}`, 20, 330)
+    doc.text(`Espaço de bem com a vida? ${values.bemComVida.toUpperCase()}`, 20, 350)
+    doc.text(`Postos validados: ${values.postosValidados.toUpperCase()}`, 20, 370)
+    doc.text(`Recomendações: ${values.recomendacoes.toUpperCase()}`, 20, 390)
+    
+    doc.save(`${values.nome}_${values.EDV}.pdf`)
   };
   return (
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
