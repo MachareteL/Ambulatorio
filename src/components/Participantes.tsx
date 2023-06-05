@@ -16,11 +16,11 @@ export default function Participantes({
 }: participantesType) {
   return (
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-8">
         <h1
           className={`${PoppyTitulo.className} text-3xl place-self-center [word-spacing: 2rem]`}
         >
-          Participantes do Afastamento
+          Participantes da Avaliação
         </h1>
         <TextField
           label="Supervisor"
@@ -65,6 +65,27 @@ export default function Participantes({
             placeholder="Area do Participante"
             name="AreaOutroParticipante"
             value={values.AreaOutroParticipante}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleChange(event)
+            }
+          />
+        </div>
+        <div className="flex w-full gap-6">
+          <TextField
+            label="Outros 2"
+            placeholder="Digite seu nome completo"
+            name="outrosParticipantes2"
+            className="w-full"
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleChange(event)
+            }
+            value={values.outrosParticipantes2}
+          />
+          <TextField
+            label="Área2"
+            placeholder="Area do Participante"
+            name="AreaOutroParticipante2"
+            value={values.AreaOutroParticipante2}
             onChange={(event: ChangeEvent<HTMLInputElement>) =>
               handleChange(event)
             }

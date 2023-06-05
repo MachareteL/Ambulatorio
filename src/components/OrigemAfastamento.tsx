@@ -24,7 +24,7 @@ export default function OrigemAfastamento({
     <div className="w-10/12 m-auto  h-5/6 mt-10 flex flex-col justify-between">
       <div className="flex flex-col gap-12">
         <h1 className={`${PoppyTitulo.className} text-3xl place-self-center`}>
-          Origem do Afastamento
+          Origem da Demanda
         </h1>
         <FormControl>
           <RadioGroup

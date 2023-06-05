@@ -50,7 +50,7 @@ export default function Resumo({ values, goBack }: fimType) {
         <div className="text-[#71767C]">
           <div className="block">
             <h1 className={`${PoppyTitulo.className} text-black text-lg`}>
-              Origem do Afastamento
+              Origem da Demanda
             </h1>
             <h1 className={`${PoppyTitulo.className} font-semibold mr-2`}></h1>
             <p className={`${PoppyTitulo.className} font-semibold`}>
@@ -63,7 +63,7 @@ export default function Resumo({ values, goBack }: fimType) {
         {/* Third DIV */}
         <div className="wrapper">
           <h1 className={`${PoppyTitulo.className} text-black text-lg`}>
-            Participantes do afastamento
+            Participantes da Avaliação
           </h1>
           <div className="text-[#71767C] flex flex-col gap-1">
             <div className="flex">
@@ -94,6 +94,19 @@ export default function Resumo({ values, goBack }: fimType) {
               <p className={`${PoppyTitulo.className} break-words max-w-xs`}>
                 {values.AreaOutroParticipante}
               </p>
+              
+            </div>
+            <div className="flex">
+              <h1 className={`${PoppyTitulo.className} font-semibold mr-2`}>
+                Outros 2:
+              </h1>
+              <p className={`${PoppyTitulo.className} mr-2 break-words max-w-xs`}>
+                {values.outrosParticipantes2}
+              </p>
+              <p className={`${PoppyTitulo.className} break-words max-w-xs`}>
+                {values.AreaOutroParticipante2}
+              </p>
+              
             </div>
           </div>
         </div>

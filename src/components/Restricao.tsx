@@ -41,7 +41,7 @@ export default function Restricao({
           rows={2}
         />
         <FormControl>
-          <FormLabel>É necessária a fisioterapia?</FormLabel>
+          <FormLabel>Está ou esteve em tratamento de fisioterapia?</FormLabel>
           <RadioGroup
             name="fisioterapia"
             onChange={handleChange}

@@ -14,8 +14,8 @@ import Final from "@/components/Final";
 
 const steps = [
   "Dados do Funcionário",
-  "Origem do Afastamento",
-  "Participantes do Afastamento",
+  "Origem da Demanda",
+  "Participantes da Avaliação",
   "Restrição/Limitação",
   "Fim",
 ];
@@ -35,6 +35,8 @@ export interface Employee {
   bemComVida: String;
   postosValidados: String;
   recomendacoes: String;
+  AreaOutroParticipante2?: string;
+  outrosParticipantes2?: string;
 }
 
 export const PoppyTitulo = Poppins({
@@ -51,8 +53,10 @@ export default function Home() {
     MEDCA: "",
     CAPTEF6: "",
     AreaOutroParticipante: "",
-    origemAfastamentoMotivo: "",
     outrosParticipantes: "",
+    AreaOutroParticipante2: "",
+    outrosParticipantes2: "",
+    origemAfastamentoMotivo: "",
     parteCorpo: "",
     fisioterapia: "",
     bemComVida: "",
@@ -94,13 +98,20 @@ export default function Home() {
       bemComVida: "",
       postosValidados: "",
       recomendacoes: "",
+      
     });
-    setNumPass(0)
+    setNumPass(0);
   };
   //https://lightrun.com/answers/preactjs-preact-typescript-why-cant-i-setstate-with-an-object-containing-the-keys-of-my-state-type
   return (
     <main className="bg-[url('../../public/BOSCH.svg')] h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center w-screen">
-      <div className={numPass == 5? `bg-white rounded-md`: `container bg-white h-4/6 sm:h-5/6 rounded-xl w-5/6 flex`}>
+      <div
+        className={
+          numPass == 5
+            ? `bg-white rounded-md`
+            : `container bg-white h-4/6 sm:h-5/6 rounded-xl w-5/6 flex`
+        }
+      >
         <Box sx={{ width: "100%", marginTop: "36px" }}>
           <Stepper
             activeStep={numPass}
@@ -140,7 +151,7 @@ export default function Home() {
               values={employee}
             />
           ) : numPass == 4 ? (
-            <Final goToNext={goToNext} restart={newForm} values={employee}/>
+            <Final goToNext={goToNext} restart={newForm} values={employee} />
           ) : numPass == 5 ? (
             <Resumo goBack={goBack} values={employee} />
           ) : (
